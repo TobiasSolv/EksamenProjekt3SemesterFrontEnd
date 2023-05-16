@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="Css/test.css" >
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="inputs">
+                <input type="text" placeholder="Enter any city..." id="cityInput">
+                <button placeholder="submit" id="add" class="button" onclick="getWeather">submit</button>
+            </div>
+         <p class="week">Vejrudsigt for uge 19</p>
+
+         </div>
+         <div class="header-right">
+             <section class="day-section" data-day-section>
+             <div class="weather">
+                 <img class="weather-icon" src="Picture/picture1.png">
+                 <div class="label">day1</div>
+                  <div class="data-for-day1">
+                      <span>kl. 7-12</span>
+                      <span>Temperatur: 10 C</span>
+                      <span>Wind speed: 3ms</span>
+                      <span>Rain: 3 m/hr</span>
+                  </div>
+            </div>
+             <div class="weather">
+                <img class="weather-icon" src="Picture/picture1.png">
+                 <div class="label">day2</div>
+                 <div class="data-for-day2">
+                     <span>kl. 7-12</span>
+                     <span>Temperatur: 10 C</span>
+                     <span>Wind speed: 3ms</span>
+                     <span>Rain: 3 m/hr</span>
+                 </div>
+             </div>
+             <div class="weather">
+                <img class="weather-icon" src="Picture/picture1.png">
+                 <div class="label">day3</div>
+                <div class="data-for-day3">
+                    <span>kl. 7-12</span>
+                    <span>Temperatur: 10 C</span>
+                    <span>Wind speed: 3ms</span>
+                    <span>Rain: 3 m/hr</span>
+                </div>
+            </div>
+             <div class="weather">
+                <img class="weather-icon" src="Picture/picture1.png">
+                <div class="label">day4</div>
+                <div class="data-for-day4">
+                    <span>kl. 7-12</span>
+                    <span>Temperatur: 10 C</span>
+                    <span>Wind speed: 3ms</span>
+                    <span>Rain: 3 m/hr</span>
+                </div>
+            </div>
+             <div class="weather">
+                <img class="weather-icon" src="Picture/picture1.png">
+                 <div class="label">day5</div>
+                  <div class="data-for-day5">
+                      <span>kl. 7-12</span>
+                      <span>Temperatur: 10 C</span>
+                      <span>Wind speed: 3ms</span>
+                      <span>Rain: 3 m/hr</span>
+                  </div>
+            </div>
+             </section>
+        </div>
+    </header>
+
+    <table class="hour">
+        <tbody data-hour>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr class="hour-row">
+            <td>
+                <div class="label">day1</div>
+                <div>15:00</div>
+            </td>
+            <td>
+                <img src="Picture/picture1.png" class="weather-icon">
+            </td>
+            <td>
+                <div class="label">Temp</div>
+                <div>15C</div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div>5 m/s</div>
+            </td>
+            <td><div class="label">rain</div>
+                <div>5 mm/hr</div></td>
+            <td>
+
+            </td>
+        </tr>
+
+
+
+        </tbody>
+    </table>
+
+    <template id="hour-template">
+        <tr class="hour-row">
+            <td>
+                <div class="label" data-day></div>
+                <div data-time></div>
+            </td>
+            <td>
+                <img data-icon class="weather-icon">
+            </td>
+            <td>
+                <div class="label" >Temp</div>
+                <div data-temp></div>
+            </td>
+            <td>
+                <div class="label">Wind</div>
+                <div data-wind></div>
+            </td>
+            <td><div class="label">rain</div>
+                <div data-rain></div></td>
+            <td>
+
+            </td>
+        </tr>
+    </template>
+    <template id="day-template">
+        <div class="weather">
+            <img data-icon class="weather-icon">
+            <div class="label" data-day></div>
+            <div class="data-for-day1">
+                <span data-time></span>
+                <span data-temp></span>
+                <span data-wind></span>
+                <span data-rain></span>
+            </div>
+        </div>
+    </template>
+
+<script type="module" src="Js/test.js"></script>
+
+</body>
+</html>

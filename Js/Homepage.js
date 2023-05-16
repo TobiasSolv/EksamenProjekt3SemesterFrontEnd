@@ -5,8 +5,8 @@ var descrip = document.querySelector('#description')
 var temp = document.querySelector('#temp')
 var wind = document.querySelector('#wind')
 var rain = document.querySelector('#rain')
-var clouds = document.querySelector('#clouds')
-apikey = "3045dd712ffe6e702e3245525ac7fa38"
+apikey = "34b82a4511fc0df32f213df4fcf90db6"
+// backup api key: 3045dd712ffe6e702e3245525ac7fa38
 
 function convertionTemp(temp) {
     const celsius = (temp).toFixed(2);
@@ -94,21 +94,78 @@ function convertionClouds(clouds) {
     return [coverage, '% ', icon];
 }
 
-function getForecast(cityName) {
-    return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apikey}`)
-        .then(res => res.json())
-        .then(data => {
-            return data.list.map(item => ({
-                date: new Date(item.dt * 1000).toLocaleDateString(),
-                descrip: item.weather[0].description,
-                tempature: item.main.temp,
-                wind: item.wind.speed,
-                rain: item.rain ? item.rain["3h"] : 0,
-                clouds: item.clouds
-            }));
-        });
-}
 
+button.addEventListener('click', function GetInfo() {
+
+    var cityName = document.getElementById("cityInput").value;
+
+
+
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${cityName}&days=7&aqi=no&alerts=no`)
+        .then(response => response.json())
+        .then(data => {
+
+            //Getting the min and max values for each day
+            for(i = 0; i<5; i++){
+                document.getElementById("day" + (i + 1) + "Temp").innerHTML = "Temp: " + Number(forecast[i].day.avgtemp_c).toFixed(2)+ "°C";
+
+                //Number(1.3450001).toFixed(2); // 1.35
+            }
+
+
+
+
+            //Getting Weather Icons
+            for(i = 0; i<5; i++){
+                document.getElementById("img" + (i+1)).src = "http://openweathermap.org/img/wn/"+
+                    data.list[i].weather[0].icon
+                    +".png";
+            }
+            //------------------------------------------------------------
+            console.log(data)
+
+
+        })
+
+        .catch(err => alert("Something Went Wrong: Try Checking Your Internet Coneciton"))
+
+    function DefaultScreen(){
+        document.getElementById("cityInput").defaultValue = "Kastrup";
+        GetInfo();
+    }
+
+
+//Getting and displaying the text for the upcoming five days of the week
+    var d = new Date();
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+//Function to get the correct integer for the index of the days array
+    function CheckDay(day){
+        if(day + d.getDay() > 6){
+            return day + d.getDay() - 7;
+        }
+        else{
+            return day + d.getDay();
+        }
+    }
+
+    for(i = 0; i<5; i++){
+        document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i)];
+    }
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/*
 button.addEventListener('click', function() {
     const city = inputval.value;
 
@@ -117,49 +174,55 @@ button.addEventListener('click', function() {
     fetch(weatherUrl)
         .then(res => res.json())
         .then(data => {
+            //const {name,description,temperature,windSpeed,rainAmount,cloudsProcent } = data.daily;
             const name = data.name;
             const description = data.weather[0].description;
             const temperature = data.main.temp;
             const windSpeed = data.wind.speed;
             const rainAmount = data.rain && data.rain['1h'] || 0;
-            const cloudsProcent = data.clouds;
+
 
             cityoutput.innerHTML = `Weather of <span>${name}</span>`;
             descrip.innerHTML = `Sky Conditions: <span>${convertionDescription(description)}</span>`;
             temp.innerHTML = `Temperature: <span>${convertionTemp(temperature)} </span>`;
             wind.innerHTML = `Wind Speed: <span>${convertionWind(windSpeed)} </span>`;
             rain.innerHTML = `Amount of Rain: <span>${convertionRain(rainAmount)} </span>`;
-            clouds.innerHTML = `Cloud coverige: <span>${convertionClouds(cloudsProcent)} </span>`;
+
         })
         .catch(err => alert('You entered a wrong city name'));
 
-    getForecast(forecastUrl)
-        .then(data => {
-            const forecastSection = document.querySelector('#forecast');
-            forecastSection.innerHTML = '';
+    function getForecast() {
+        const cityName = inputval.value;
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apikey}`)
+            .then(res => res.json())
+            .then(data => {
+                for(i=0; i<5; i++){
+                    document.getElementById("day" +(i+1)+ "temp").innerHTML = "temp:" + Number(data.list[i].main.temp).toFixed(2)
+                }
 
-            data.forEach(item => {
-                const date = item.date;
-                const description = item.description;
-                const temperature = item.temperature;
-                const windSpeed = item.windSpeed;
-                const rainAmount = item.rainAmount || 0;
-                const cloudsProcent = data.clouds;
+            })
+            .catch(err => alert("Wrong name"))
+    }
 
-                const div = document.createElement('div');
-                div.innerHTML = `
-                    <p>Date: <span>${date}</span></p>
-                    <p>Sky Conditions: <span>${convertionDescription(description)}</span></p>
-                    <p>Temperature: <span>${convertionTemp(temperature)}°C</span></p>
-                    <p>Wind Speed: <span>${convertionWind(windSpeed)} m/s</span></p>
-                    <p>Amount of Rain: <span>${convertionRain(rainAmount)} mm/hr</span></p>
-                    <p>Cloud coverige: <span>${convertionClouds(cloudsProcent)} </span></p>
-                `;
-                forecastSection.appendChild(div);
-            });
+    const d = new Date();
+    const weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    function CheckDay(day){
+        if(day + d.getDay() > 6){
+            return day +d.getDay()-7;
+        }else{
+            return day +d.getDay();
+        }
+    }
+
+    for (i=0; i<5; i++){
+        document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i)];
+    }
         })
         .catch(err => console.log(err));
-});
+}, 'load', ()=>{ });
+
+ */
 /*
 button.addEventListener('click', function() {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputval.value + '&appid=' + apikey)

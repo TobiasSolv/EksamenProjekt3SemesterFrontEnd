@@ -1,13 +1,26 @@
-body
-{
-    display: flex;
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+body{
+
     background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
     font-family: sans-serif;
-    justify-content: center;
-    flex-direction: column;
+}
+
+.header{
+    display: flex;
     align-items: center;
+    gap: 3rem;
 
 
+}
+
+.header-left{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputs input[type="text"]
@@ -78,38 +91,61 @@ body
 
 .button:hover {opacity: 1}
 
-.forecast-container {
+.week{
     display: flex;
+    border: 2px solid black;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    padding: 1rem;
 }
 
-.forecast-day {
-    flex: 1;
-    margin: 10px;
-    padding: 10px;
+.header-right{
 
 }
 
-.forecast-day h2 {
-    margin-top: 0;
+.day-section{
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: repeat(5, auto);
+    gap: .5rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.weather{
+    align-items: center;
+    border: 1px solid ;
+    border-radius: .25rem;
+    padding: .25rem;
+
 
 }
 
-.forecast-hour {
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
+
+
+.weather-icon{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: flex;
+    float: left;
+    margin: 0.5rem;
+    padding: 0.5rem;
 }
 
-.forecast-hour div {
-    margin-bottom: 5px;
+.hour{
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
 }
 
-.weather-icon {
-    width: 50px;
-    height: 50px;
+.hour-row{
+    background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
 }
 
-.average-card {
-    border: 1px solid #ccc;
-    padding: 15px;
+.hour-row > td{
+    padding: 0.25rem 0.5rem;
 }
+

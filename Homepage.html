@@ -5,48 +5,20 @@
     <title>Ac4YTWe</title>
     <link rel="icon" type="image/x-icon" href="Picture/picture2.png">
     <link rel="stylesheet" href="Css/style.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
+<body onload="fetchWeatherForecast('Kastrup')">
 
-<body>
+<h1>Weather Forecast</h1>
 
-<div class="container">
-    <div class="logo">
-        <div class="navbar">
-            <h1>Ac4YTWe</h1>
-            <img src="Picture/picture1.png" alt="" width="100"/>
-        </div>
-    </div>
+<div class="inputs">
+    <label for="city-input"></label>
+    <input type="text" id="city-input" />
+    <button class="button" onclick="fetchWeatherForecast()">Get Forecast</button>
 </div>
 
-<div class="container-fluid">
-    <section class="main">
-        <section class="inputs">
-            <input type="text" placeholder="Enter any city..." id="cityinput">
-            <button placeholder="submit" id="add" class="button">submit</button>
-        </section>
+<div id="forecast-container" class="forecast-container"></div>
 
-        <!-- Make display section draggable -->
-        <section class="display">
-            <div class="wrapper">
-                <h2 id="cityoutput"></h2>
-                <p id="description"></p>
-                <p id="temp"></p>
-                <p id="wind"></p>
-                <p id="rain"></p>
-                <p id="clouds"></p>
-            </div>
-        </section>
+<script src="Js/main.js"></script>
 
-        <section class="forecast">
-            <div class="wrapper">
-                <h2>7-Day Forecast</h2>
-                <div id="forecast"></div>
-            </div>
-        </section>
-    </section>
-</div>
-
-<script src="Js/Homepage.js"></script>
 </body>
 </html>
