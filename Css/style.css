@@ -1,13 +1,12 @@
 body
 {
     display: flex;
-    background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+    background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
     font-family: sans-serif;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
-
+    color: white;
 }
 
 .inputs input[type="text"]
@@ -19,8 +18,9 @@ body
     padding: 10px;
     background-color: transparent;
     border: 2px solid #c2c2c2;
-    border-radius: 2px;
+    border-radius: 15px;
     margin-right:4px ;
+
 }
 
 .inputs input[type="submit"]
@@ -74,6 +74,7 @@ body
     margin: 4px 2px;
     opacity: 0.6;
     transition: 0.3s;
+    border-radius: 15px;
 }
 
 .button:hover {opacity: 1}
@@ -91,14 +92,13 @@ body
 
 .forecast-day h2 {
     margin-top: 0;
+    border: 2px solid rebeccapurple;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
 
 }
 
-.forecast-hour {
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
 
 .forecast-hour div {
     margin-bottom: 5px;
@@ -110,6 +110,22 @@ body
 }
 
 .average-card {
-    border: 1px solid #ccc;
+    border: 1px solid yellow;
+    border-radius: 20px;
     padding: 15px;
+
+
+}
+
+.forecast-hour {
+    border: 2px solid lightblue;
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 20px;
+    color: ghostwhite;
+
+}
+
+.h2-date {
+    font-size: 15px;
 }
