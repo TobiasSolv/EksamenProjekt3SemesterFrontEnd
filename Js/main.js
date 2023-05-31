@@ -11,7 +11,7 @@ function fetchWeatherForecast(city = '') {
         return;
     }
 
-    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${(city)}&days=7&aqi=no&alerts=no`;
+    const API_URL = `http://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${(city)}&days=7&aqi=no&alerts=no`;
 
     fetch(API_URL)
         .then(response => response.json())
@@ -52,7 +52,9 @@ function fetchWeatherForecast(city = '') {
                     const hourHour = hourDate.getHours();
                     const hourDay = hourDate.getDate();
 
-                    if (hourDay < currentDay || (hourDay === currentDay && hourHour < currentDate.getHours()) || hourDay !== currentDay && (hourHour < 7 || hourHour > 21)) {
+                    if (hourDay < currentDay ||
+                        (hourDay === currentDay && hourHour < currentDate.getHours())
+                        || hourDay !== currentDay && (hourHour < 7 || hourHour > 21)) {
                         return; // Skip hours before the current hour and previous days' hours
                     }
 
