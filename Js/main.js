@@ -11,7 +11,7 @@ function fetchWeatherForecast(city = '') {
         return;
     }
 
-    const API_URL = `http://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${(city)}&days=7&aqi=no&alerts=no`;
+    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${(city)}&days=7&aqi=no&alerts=no`;
 
     fetch(API_URL)
         .then(response => response.json())
