@@ -11,7 +11,7 @@ function fetchWeatherForecast(city = '') {
         return;
     }
 
-    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=9f6383a63c25407799d121020231005&q=${(city)}&days=7&aqi=no&alerts=no`;
+    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=cc1bef9fceaf407fb1482827233105&q=${(city)}&days=7&aqi=no&alerts=no`;
 
     fetch(API_URL)
         .then(response => response.json())
@@ -52,10 +52,12 @@ function fetchWeatherForecast(city = '') {
                     const hourHour = hourDate.getHours();
                     const hourDay = hourDate.getDate();
 
-                    if (hourDay < currentDay ||
-                        (hourDay === currentDay && hourHour < currentDate.getHours())
-                        || hourDay !== currentDay && (hourHour < 7 || hourHour > 21)) {
-                        return; // Skip hours before the current hour and previous days' hours
+                    if (hourDay === currentDay && hourHour < currentDate.getHours()) {
+                        return; // Skip hours before the current hour for the current day
+                    }
+
+                    if (hourDay !== currentDay && (hourHour < 7 || hourHour > 21)) {
+                        return; // Skip hours before 7 and after 21 for non-current days
                     }
 
                     const sportRecommendation = getSportRecommendation(hour.condition.text, hour.precip_mm, hour.wind_kph, hour.temp_c);
