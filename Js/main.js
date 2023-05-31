@@ -1,34 +1,54 @@
+// Function to fetch and display weather forecast
 function fetchWeatherForecast(city = '') {
+    // Get the city input element
     const cityInput = document.getElementById('city-input');
+
+    // If no city is provided, get the value from the input field
     if (city === '') {
         city = cityInput.value.trim();
     } else {
+        // If city is provided, set the value of the input field
         cityInput.value = city;
     }
 
+    // If the city is empty, show an alert and return
     if (city === '') {
         alert('Please enter a valid city.');
         return;
     }
 
+    // Construct the API URL for fetching weather forecast
     const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=cc1bef9fceaf407fb1482827233105&q=${(city)}&days=7&aqi=no&alerts=no`;
 
+    // Fetch the weather forecast from the API
     fetch(API_URL)
-        .then(response => response.json())
+        .then(response => response.json()) // Parse response as JSON
         .then(data => {
+            // Retrieve forecast days array
             const forecastDays = data.forecast.forecastday;
+
+            // Get the forecast container element
             const forecastContainer = document.getElementById('forecast-container');
+
+            // Clear the forecast container
             forecastContainer.innerHTML = '';
 
+            // Get the current date and day
             const currentDate = new Date();
             const currentDay = currentDate.getDate();
 
+            // Loop through each forecast day
             forecastDays.forEach(day => {
+                // Convert the date string to a Date object
                 const date = new Date(day.date);
-                const weekday = date.toLocaleDateString('en-US', {weekday: 'long'});
 
+                // Get the weekday name
+                const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
+
+                // Check if the current day is the same as the forecast day
                 const isCurrentDay = date.getDate() === currentDay;
 
+                // Create the HTML for the average weather card
                 let averageCard = `
           <div class="forecast-day${getSportRecommendation ? ' recommended' : ''}">
             <h2>${weekday} <br>  <div class="h2-date">${day.date} </div></h2>
@@ -42,31 +62,36 @@ function fetchWeatherForecast(city = '') {
               <img class="weather-icon" src="https:${day.day.condition.icon}">
             </div>
         `;
-
+                // Extract weather details for each hour of the forecast day
                 const precipitation = day.day.totalprecip_mm;
                 const windSpeed = day.day.maxwind_kph;
                 const temperature = day.day.avgtemp_c;
 
                 day.hour.forEach(hour => {
+                    // Convert the hour string to a Date object
                     const hourDate = new Date(hour.time);
                     const hourHour = hourDate.getHours();
                     const hourDay = hourDate.getDate();
 
+                    // Skip hours before the current hour for the current day
                     if (hourDay === currentDay && hourHour < currentDate.getHours()) {
-                        return; // Skip hours before the current hour for the current day
+                        return;
                     }
 
+                    // Skip hours before 7 and after 21 for non-current days
                     if (hourDay !== currentDay && (hourHour < 7 || hourHour > 21)) {
-                        return; // Skip hours before 7 and after 21 for non-current days
+                        return;
                     }
 
-                    const sportRecommendation = getSportRecommendation(hour.condition.text, hour.precip_mm, hour.wind_kph, hour.temp_c);
-                    const isRecommended = sportRecommendation.length > 0;
-                    const isNotRecommended =
-                        precipitation >= 10 &&
-                        windSpeed / 3.6 >= 10 &&
-                        temperature <= 5;
+                    // Get the sport recommendation for the hour
+                    const sportRecommendation = getSportRecommendation(
+                        hour.condition.text,
+                        hour.precip_mm,
+                        hour.wind_kph,
+                        hour.temp_c
+                        );
 
+                    // Create the HTML for the forecast hour
                     const forecastHour = `
            <div class="forecast-hour" ${getSportRecommendation ? ' not-recommended' : ''}>
               <div>Kl: ${hour.time.substring(11, 16)}</div>
@@ -79,22 +104,30 @@ function fetchWeatherForecast(city = '') {
               
             </div>
           `;
-
+                    // Append the forecast hour HTML to the average card
                     averageCard += forecastHour;
                 });
 
-                averageCard += `</div>`;
+                // Close the average card HTML
+                averageCard += '</div>';
+
+                // Insert the average card HTML into the forecast container
                 forecastContainer.insertAdjacentHTML('beforeend', averageCard);
             });
         })
         .catch(error => {
-            console.log(error);
-            alert('Failed to fetch weather forecast.');
+            // Log the error to the console
+            console.error('Failed to fetch weather forecast:', error);
+
+            // Show an alert indicating the failure to fetch the weather forecast
+            alert('Failed to fetch weather forecast. Please try again later.');
         });
 }
 
+// Function to get sport recommendation based on weather conditions
 function getSportRecommendation(condition, precipitation, windSpeed, temperature) {
     const lowerCaseCondition = condition.toLowerCase();
+    // Define the list of weather conditions and corresponding sports
     const weatherCondition =
         lowerCaseCondition.includes('rain') ||
         lowerCaseCondition.includes('sunny') ||
@@ -137,6 +170,7 @@ function getSportRecommendation(condition, precipitation, windSpeed, temperature
 
     const sportsData = [...sportsDataRec, ...sportsDataNotRec];
 
+    // Filter the sports based on the provided condition
     let recommendedSports = sportsData.filter(sport => {
         if (weatherCondition &&
             precipitation <= sport.precipitation &&
@@ -153,9 +187,9 @@ function getSportRecommendation(condition, precipitation, windSpeed, temperature
     });
 
 
-
+        // Map the filtered sports to a string with the sport name and an image
     return recommendedSports.map(sport => {
-
+        // Join the sport recommendation strings together and return
         return `${sport.name} <img src="${sport.image}" style="width: 15px; height: 15px;" /> <br>`;
     }).join('');
 }
